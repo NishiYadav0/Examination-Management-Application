@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+backend/instance/
+backend/exports/*
+backend/reports/*
+!backend/exports/.gitkeep
+!backend/reports/.gitkeep
+celerybeat-schedule*
+dump.rdb
+.DS_Store
+PLAN.md
+PROGRESS.md
+

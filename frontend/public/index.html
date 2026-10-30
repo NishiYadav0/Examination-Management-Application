@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Examination Management Portal – schedule vivas, practicals & project demos, book slots and publish rubric based results.">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="icon" href="<%= BASE_URL %>favicon.png">
+    <link rel="manifest" href="<%= BASE_URL %>manifest.json">
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>icons/icon-192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>EMP · Examination Management Portal</title>
+    <script>
+      // apply saved theme before Vue mounts (avoids a flash)
+      try { var t = localStorage.getItem('emp-theme'); if (t) document.documentElement.setAttribute('data-bs-theme', t); } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <noscript><strong>EMP needs JavaScript enabled to work.</strong></noscript>
+    <div id="app"></div>
+  </body>
+</html>
