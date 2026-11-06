@@ -1,0 +1,32 @@
+{% extends "emails/base.html" %}
+{% block title %}{% if kind == 'booking' %}Don't miss your booking window{% else %}Your upcoming examination{% endif %}{% endblock %}
+{% block content %}
+<p>Hi <b>{{ name }}</b>,</p>
+{% if rows %}
+<p>This is a friendly reminder about your upcoming examination{{ 's' if rows|length > 1 }}:</p>
+{% for r in rows %}
+<table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:12px;margin:14px 0;">
+<tr><td style="padding:16px 18px;">
+  <div style="font-size:17px;font-weight:700;color:#4f46e5;">{{ r.exam }} {% if r.is_today %}<span style="background:#fee2e2;color:#b91c1c;font-size:11px;padding:3px 8px;border-radius:20px;">TODAY</span>{% endif %}</div>
+  <div style="color:#64748b;font-size:13px;margin-bottom:10px;">{{ r.course }} · {{ r.type }}</div>
+  <table cellpadding="4" style="font-size:14px;">
+    <tr><td style="color:#64748b;">📅 Date</td><td><b>{{ r.date }}</b></td></tr>
+    <tr><td style="color:#64748b;">⏰ Time</td><td><b>{{ r.time }}</b></td></tr>
+    <tr><td style="color:#64748b;">👤 Examiner</td><td>{{ r.examiner }}</td></tr>
+    {% if r.meeting_link %}<tr><td style="color:#64748b;">🔗 Meeting</td><td><a href="{{ r.meeting_link }}">{{ r.meeting_link }}</a></td></tr>{% endif %}
+    {% if r.venue %}<tr><td style="color:#64748b;">📍 Venue</td><td>{{ r.venue }}</td></tr>{% endif %}
+  </table>
+  <div style="background:#eef2ff;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:13px;"><b>Instructions:</b> {{ r.instructions }}</div>
+</td></tr></table>
+{% endfor %}
+{% endif %}
+{% if pending %}
+<p>The following examinations are open for booking and you have <b>not booked a slot yet</b>:</p>
+<table width="100%" cellpadding="8" cellspacing="0" style="border-collapse:collapse;font-size:14px;">
+<tr style="background:#eef2ff;"><th align="left">Examination</th><th align="left">Type</th><th align="left">Book before</th></tr>
+{% for p in pending %}<tr style="border-bottom:1px solid #e2e8f0;"><td>{{ p.exam }} <span style="color:#64748b;">({{ p.course }})</span></td><td>{{ p.type }}</td><td><b>{{ p.deadline }}</b> ({{ p.days_left }} day{{ 's' if p.days_left != 1 }} left)</td></tr>{% endfor %}
+</table>
+{% endif %}
+<p style="margin-top:24px;"><a href="{{ frontend_url }}/student/bookings" style="background:#4f46e5;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;display:inline-block;">Open my dashboard</a></p>
+<p style="color:#64748b;">All the best! 🍀<br>EMP Team</p>
+{% endblock %}

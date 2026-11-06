@@ -1,0 +1,10 @@
+{% extends "emails/base.html" %}
+{% block title %}{{ heading }}{% endblock %}
+{% block content %}
+<p>Hi <b>{{ name }}</b>,</p>
+{% for line in lines %}<p style="margin:8px 0;">{{ line|safe }}</p>{% endfor %}
+{% if button_text %}
+<p style="margin-top:24px;"><a href="{{ frontend_url }}{{ button_link }}" style="background:#4f46e5;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;display:inline-block;">{{ button_text }}</a></p>
+{% endif %}
+<p style="margin-top:24px;color:#64748b;">Regards,<br>EMP Team</p>
+{% endblock %}
